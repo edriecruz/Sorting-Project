@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import  MockData  from './MOCK_DATA (1).json'
+import { Container } from './Container';
 
 export default function App() {
   const [data, setData] = useState(MockData);
@@ -20,28 +21,19 @@ export default function App() {
       setData(sorted);
       setOrder("asc");
     }
-  };
+  }; 
   return (
-    <div className="flex text-center justify-center mt-10">
-      <table className=' border-2 w-3/4' >
-      <tr className=' border-2 '>
-        <th className=' border-2' onClick={()=>sorting("first_name")}>First Name</th>
-        <th className=' border-2' onClick={()=>sorting("last_name")}>Last Name</th>
-        <th className=' border-2' onClick={()=>sorting("email")}>Email</th>
-        <th className=' border-2' onClick={()=>sorting("gender")}>Gender</th>
-        <th className=' border-2' onClick={()=>sorting("ip_address")}>IP Address</th>
-      </tr>
+    <div className=" text-center justify-center mt-10">
+      <button className='m-2' onClick={()=>sorting("first_name")}>sort by first name</button>
+      <button className='m-2' onClick={()=>sorting("last_name")}>sort by last name</button>
+    <div className="flex flex-wrap justify-center">
+
   {data.map((user) => (
-                    
-      <tr key={user.id} className=' border-2'>
-          <td className='pl-3 pt-3 border-2'>{user.first_name}</td>
-          <td className='pl-3 pt-3 border-2'>{user.last_name}</td>
-          <td className='pl-3 pt-3 border-2'>{user.email}</td>
-          <td className='pl-3 pt-3 border-2'>{user.gender}</td>
-          <td className='pl-3 pt-3 border-2'>{user.ip_address}</td>
-      </tr>
+                    <div className='m-12 border-2 p-6 w-1/6'>
+                      <Container details={user} key={user.id} />
+                    </div>
               ))}
-              </table>
+        </div>
     </div>
   );
 }
